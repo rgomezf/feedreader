@@ -84,39 +84,43 @@ $(function() {
 
          // Call to the asynchronous function
         beforeEach(function(done){
-            loadFeed(0, function() {
-                done();
-            });
+            loadFeed(0, done);
         });
 
-         it('its done loading and has an entry', function(done){
+         it('its done loading and has an entry', function(){
             expect($('.entry').length).toBeGreaterThan(0);
-            done();
          });
-
     });
 
     /* Test suite: "New Feed Selection" */
 
     describe('New Feed Selection', function() {
 
-        // Holds the previous entries of the RSS
+        // Holds the previous entry of the RSS
         var lastFeed;
+        // Holds the new entry of the RSS
+        var newFeed;
 
         // Call to the asynchronous function
         beforeEach(function(done) {
-            lastFeed = $('.entry').html();
-
-            loadFeed(1, function() {
-                done();
+            loadFeed(0, function() {
+                    lastFeed = $('.entry').html();
+                    console.log(lastFeed);
+                    // Call again for the next entry in an asynchronous way
+                    loadFeed(1, function() {
+                        newFeed = $('.entry').html();
+                        console.log(newFeed);
+                        done();
+                    });
             });
         });
 
         // Compare the feeds
         it('it does change', function(done){
-            expect(lastFeed).not.toMatch($('.entry').html());
+            expect(newFeed).not.toBe(lastFeed);
             done();
         });
+
     });
 //
 
