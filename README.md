@@ -1,5 +1,5 @@
 
-# Feed Reader Project - Jasmine test
+# Feed Reader Project - "Jasmine test"
 
 In this project of the Frontend Web Development nanodegree at Udacity, it uses Jasmine test tool to evaluate a feed reader app.  In order to complete this project all of the test create in the test tool need to pass their concept.
 
